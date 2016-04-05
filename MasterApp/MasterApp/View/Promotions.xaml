@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MasterApp.Promotions">
+	<ContentPage.Content>
+		<StackLayout>
+			<Label />
+			<ListView ItemsSource="{Binding Promotions}" ItemTapped="OnItemTapped">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Padding="5">
+								<StackLayout Orientation="Horizontal">
+									<Image Source="Icon-Small@3x.png" />
+									<Label Text="{Binding ProductName}" Font="20" />
+								</StackLayout>
+								<StackLayout Orientation="Horizontal">
+									<Label Text="Oferta válida até: " Font="10" />
+									<Label Text="{Binding Validity}" Font="10" />
+								</StackLayout>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
