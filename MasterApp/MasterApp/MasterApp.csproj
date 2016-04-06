@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Helpers\Grouping.cs" />
+    <Compile Include="Model\Monkey.cs" />
     <Compile Include="Pages\MenuCell.cs" />
     <Compile Include="Pages\MenuItem.cs" />
     <Compile Include="Pages\MenuListData.cs" />
@@ -43,6 +45,12 @@
     <Compile Include="Pages\MenuPage.cs" />
     <Compile Include="Pages\RootPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\MonkeysViewModel.cs" />
+    <Compile Include="View\AspectImageCell.cs" />
+    <Compile Include="View\DetailsPage.xaml.cs">
+      <DependentUpon>DetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HeaderCell.cs" />
     <Compile Include="View\Promotions.xaml.cs">
       <DependentUpon>Promotions.xaml</DependentUpon>
     </Compile>
@@ -50,9 +58,10 @@
       <DependentUpon>Outra.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Promotion.cs" />
-    <Compile Include="ViewModel\PromotionViewModel.cs" />
+    <Compile Include="ViewModels\PromotionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="Xamarin.Forms.Core, Version=1.3.3.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\Xamarin.Forms.1.3.3.6323\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -89,8 +98,9 @@
   </Target>
   -->
   <ItemGroup>
-    <Folder Include="View\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="Model\" />
+    <EmbeddedResource Include="View\DetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

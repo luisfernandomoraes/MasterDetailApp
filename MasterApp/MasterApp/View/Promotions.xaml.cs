@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using MasterApp;
+using MasterApp.Model;
+using MasterApp.ViewModels;
+using MasterApp.View;
 
 namespace MasterApp
 {
@@ -13,14 +17,19 @@ namespace MasterApp
         public Promotions()
         {
             InitializeComponent();
-            var vm = new PromotionViewModel();
-            this.BindingContext = vm;
+            this.BindingContext = new MonkeysViewModel();
         }
 
-        public void OnItemTapped(object o, EventArgs evt)
+        public void OnItemSelected(object sender, ItemTappedEventArgs args)
         {
-			
+            var monkey = args.Item as Monkey;
+            if (monkey == null)
+                return;
+
+            Navigation.PushAsync(new DetailsPage(monkey));
+            // Reset the selected item
+            list.SelectedItem = null;
         }
-		
+
     }
 }
