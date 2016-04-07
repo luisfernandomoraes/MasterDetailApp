@@ -30,6 +30,10 @@ namespace MasterApp
             // Reset the selected item
             list.SelectedItem = null;
         }
+        public void OnCliked(object sender,EventArgs evt)
+        {
+            DisplayAlert("Alert", "You have been alerted", "OK");
+        }
 
     }
 }
