@@ -23,6 +23,8 @@ namespace MasterApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            //Added to prevent iOS linker to strip behaviors assembly out of deployed package.
+            Xamarin.Behaviors.Infrastructure.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

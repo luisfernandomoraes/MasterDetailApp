@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MasterApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace MasterApp
         public Outra()
         {
             InitializeComponent();
+            BindingContext = new MonkeysViewModel();
         }
     }
 }

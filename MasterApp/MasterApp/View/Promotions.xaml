@@ -2,48 +2,66 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MasterApp.View;assembly=MasterApp"
+             xmlns:b="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
+             x:Name="MainPage"
              x:Class="MasterApp.Promotions"
-            Title="Monkeys">
-  <ListView x:Name="list"
-            ItemsSource="{Binding MonkeysGrouped}"
-            ItemTapped="OnItemSelected"
-            IsGroupingEnabled="True"
-            GroupDisplayBinding="{Binding Key}"
-            GroupShortNameBinding="{Binding Key}"
-            HasUnevenRows="True">
-    <ListView.GroupHeaderTemplate>
-      <DataTemplate>
-        <ViewCell Height="25">
-          <StackLayout VerticalOptions="FillAndExpand"
-                       Padding="5"
-                       BackgroundColor="#3498DB">
-            <Label Text="{Binding Key}" TextColor="White" VerticalOptions="Center"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.GroupHeaderTemplate>
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell Height="60">
-          <Grid Padding="0">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="20"></RowDefinition>
-              <RowDefinition Height="20"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="60"></ColumnDefinition>
-              <ColumnDefinition Width="*"></ColumnDefinition>
-              <ColumnDefinition Width="80"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            
-            <Switch Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" HorizontalOptions="EndAndExpand"/>
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" LineBreakMode="TailTruncation"></Label>
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation"></Label>
-            <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Source="{Binding Image}" Aspect="AspectFill"/>
-            <!--<Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Text="Ok" Clicked="OnCliked"/>-->
-          </Grid>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-  </ListView>
+             Title="Monkeys">
+
+  <StackLayout>
+    <Button Text="OK"  Command="{Binding LoginCommand}"/>
+
+    <ListView x:Name="list"
+              ItemsSource="{Binding MonkeysGrouped,Mode=TwoWay}"
+              ItemTapped="OnItemSelected"
+              IsGroupingEnabled="True"
+              GroupDisplayBinding="{Binding Key}"
+              GroupShortNameBinding="{Binding Key}"
+              HasUnevenRows="True">
+      <ListView.GroupHeaderTemplate>
+        <DataTemplate>
+          <ViewCell Height="25">
+            <StackLayout VerticalOptions="FillAndExpand"
+                         Padding="5"
+                         BackgroundColor="#3498DB">
+              <Label Text="{Binding Key}" TextColor="White" VerticalOptions="Center"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.GroupHeaderTemplate>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell Height="60">
+            <Grid Padding="0">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="5"></ColumnDefinition>
+              </Grid.ColumnDefinitions>
+
+              <Switch Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" HorizontalOptions="EndAndExpand"/>
+              <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" LineBreakMode="TailTruncation"></Label>
+              <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation"></Label>
+              <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Source="{Binding Image}" Aspect="AspectFill"/>
+              <Button Grid.Row="0" x:Name="myButton" Grid.Column="3" Grid.ColumnSpan="2" Image="tres.png">
+                <b:Interaction.Behaviors>
+                  <b:BehaviorCollection>
+                    <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
+                                EventName="Clicked"
+                                CommandName="OptionsCommand"
+                                CommandParameter="{Binding}" />
+                  </b:BehaviorCollection>
+                </b:Interaction.Behaviors>
+              </Button>
+              <!--CommandParameter="{x:Reference myButton}"/>-->
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
 </ContentPage>

@@ -1,7 +1,10 @@
 ﻿using MasterApp.Helpers;
 using MasterApp.Model;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MasterApp.ViewModels
 {
@@ -9,9 +12,17 @@ namespace MasterApp.ViewModels
     {
         public ObservableCollection<Monkey> Monkeys { get; set; }
         public ObservableCollection<Grouping<string, Monkey>> MonkeysGrouped { get; set; }
+                        
+        public ICommand OptionsCommand
+        {
+            get { return new Command(OnOptionsCommand); }
+        }
 
         public MonkeysViewModel()
         {
+            
+            #region Data
+            
             Monkeys = new ObservableCollection<Monkey>();
             Monkeys.Add(new Monkey
             {
@@ -142,12 +153,24 @@ namespace MasterApp.ViewModels
                 Image = "http://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Schimpanse_Zoo_Leipzig.jpg/220px-Schimpanse_Zoo_Leipzig.jpg"
             });
 
+            #endregion
+           
             var sorted = from monkey in Monkeys
                          orderby monkey.Name
                          group monkey by monkey.NameSort into monkeyGroup
                          select new Grouping<string, Monkey>(monkeyGroup.Key, monkeyGroup);
 
             MonkeysGrouped = new ObservableCollection<Grouping<string, Monkey>>(sorted);
+        }
+
+        private void OnOptionsCommand(object parameter)
+        {
+            var selectedTimer = parameter as Monkey;
+            if (selectedTimer != null)
+            {
+                // start timer
+                //MessageCenter.Send(this, "MyAlertName", "My actual alert content, or an object if you want")
+            }
         }
     }
 }
