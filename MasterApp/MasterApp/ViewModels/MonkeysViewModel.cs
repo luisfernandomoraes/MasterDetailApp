@@ -12,7 +12,9 @@ namespace MasterApp.ViewModels
     {
         public ObservableCollection<Monkey> Monkeys { get; set; }
         public ObservableCollection<Grouping<string, Monkey>> MonkeysGrouped { get; set; }
-                        
+
+        public readonly Services.IMessegeService _messageServices;
+
         public ICommand OptionsCommand
         {
             get { return new Command(OnOptionsCommand); }
@@ -20,9 +22,9 @@ namespace MasterApp.ViewModels
 
         public MonkeysViewModel()
         {
-            
+
             #region Data
-            
+
             Monkeys = new ObservableCollection<Monkey>();
             Monkeys.Add(new Monkey
             {
@@ -154,7 +156,8 @@ namespace MasterApp.ViewModels
             });
 
             #endregion
-           
+
+            this._messageServices = DependencyService.Get<Services.IMessegeService>();
             var sorted = from monkey in Monkeys
                          orderby monkey.Name
                          group monkey by monkey.NameSort into monkeyGroup
@@ -165,11 +168,10 @@ namespace MasterApp.ViewModels
 
         private void OnOptionsCommand(object parameter)
         {
-            var selectedTimer = parameter as Monkey;
-            if (selectedTimer != null)
+            var monkey = parameter as Monkey;
+            if (monkey != null)
             {
-                // start timer
-                //MessageCenter.Send(this, "MyAlertName", "My actual alert content, or an object if you want")
+                _messageServices.ShowAsync("MasterApp", "Nome do monkey: " + monkey.Name, "OK");
             }
         }
     }

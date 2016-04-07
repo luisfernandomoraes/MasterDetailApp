@@ -8,15 +8,16 @@
              Title="Monkeys">
 
   <StackLayout>
-    <Button Text="OK"  Command="{Binding LoginCommand}"/>
+    <Button Text="OK"  Command="{Binding OptionsCommand}"/>
 
     <ListView x:Name="list"
               ItemsSource="{Binding MonkeysGrouped,Mode=TwoWay}"
               ItemTapped="OnItemSelected"
               IsGroupingEnabled="True"
               GroupDisplayBinding="{Binding Key}"
-              GroupShortNameBinding="{Binding Key}"
               HasUnevenRows="True">
+              <!--GroupShortNameBinding="{Binding Key}"-->
+              
       <ListView.GroupHeaderTemplate>
         <DataTemplate>
           <ViewCell Height="25">
@@ -40,14 +41,14 @@
                 <ColumnDefinition Width="60"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="80"></ColumnDefinition>
-                <ColumnDefinition Width="5"></ColumnDefinition>
+                <ColumnDefinition Width="25"></ColumnDefinition>
               </Grid.ColumnDefinitions>
 
               <Switch Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" HorizontalOptions="EndAndExpand"/>
               <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" LineBreakMode="TailTruncation"></Label>
               <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation"></Label>
               <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Source="{Binding Image}" Aspect="AspectFill"/>
-              <Button Grid.Row="0" x:Name="myButton" Grid.Column="3" Grid.ColumnSpan="2" Image="tres.png">
+              <Button Grid.Row="0" x:Name="myButton" Grid.Column="3" Grid.RowSpan="2" Image="tres.png" VerticalOptions="FillAndExpand">
                 <b:Interaction.Behaviors>
                   <b:BehaviorCollection>
                     <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
