@@ -15,6 +15,8 @@ namespace MasterApp.ViewModels
         public ObservableCollection<Grouping<string, Monkey>> MonkeysGrouped { get; set; }
 
         public readonly Services.IMessegeService _messageServices;
+        public readonly Services.INavigationService _navigation;
+
 
         public ICommand OptionsCommand
         {
@@ -159,6 +161,7 @@ namespace MasterApp.ViewModels
             #endregion
 
             this._messageServices = DependencyService.Get<Services.IMessegeService>();
+            this._navigation = DependencyService.Get<Services.INavigationService>();
             var sorted = from monkey in Monkeys
                                   orderby monkey.Name
                                   group monkey by monkey.NameSort into monkeyGroup
@@ -172,7 +175,8 @@ namespace MasterApp.ViewModels
             var monkey = parameter as Monkey;
             if (monkey != null)
             {
-                _messageServices.DisplayActionSheet("Nome do monkey: " + monkey.Name, "Cancelar", "Destruction", "Adicionar", "Excluir", "Visualizar");
+                //_messageServices.DisplayActionSheet("Nome do monkey: " + monkey.Name, "Cancelar", "Destruction", "Adicionar", "Excluir", "Visualizar");
+                _navigation.NavigateToDetails(monkey);
             }
         }
     }

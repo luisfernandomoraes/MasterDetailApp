@@ -15,15 +15,14 @@ namespace MasterApp.View.Services
             throw new NotImplementedException();
         }
 
-        public Task NavigateToDetails(Monkey monkey)
+        public async Task NavigateToDetails(Monkey monkey)
         {
-            throw new NotImplementedException();
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new Outra());
         }
 
-        public Task ShowProperties()
+        public async Task ShowProperties()
         {
-            //App.Current.MainPage.Navigation.PushAsync()
-            return null;
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new Outra());
         }
     }
 }

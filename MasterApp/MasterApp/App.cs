@@ -15,6 +15,8 @@ namespace MasterApp
         {
             // The root page of your application
             DependencyService.Register<IMessegeService, MessageService>();
+            DependencyService.Register<INavigationService, NavigationService>();
+
             MainPage = new Pages.RootPage();
         }
 

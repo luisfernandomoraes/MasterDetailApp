@@ -1,13 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MasterApp.Outra">
-	<Label Text="outra" VerticalOptions="Center" HorizontalOptions="Center" />
-  <StackLayout>
-    <Entry x:Name="nameEntry" Placeholder="Name" Keyboard="Default" />
-    <Button x:Name="loginButton"
-            Text="Login"
-            Command="{Binding LoginCommand}"
-            CommandParameter="{Binding Source={x:Reference nameEntry}, Path=Text}"  />
-  </StackLayout>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms" x:Class="MasterApp.Outra">
+	<ContentPage.Content>
+		<controls:PopupLayout>
+			<controls:PopupLayout.Content>
+				<Button x:Name="OpenButton" Text="Open selector popup" />
+			</controls:PopupLayout.Content>
+		</controls:PopupLayout>
+	</ContentPage.Content>
 </ContentPage>
