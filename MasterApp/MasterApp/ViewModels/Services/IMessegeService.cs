@@ -9,5 +9,7 @@ namespace MasterApp.ViewModels.Services
     public interface IMessegeService
     {
         Task ShowAsync(string title, string message, string ok);
+
+        Task DisplayActionSheet(string title, string cancel, string destruction, params string[] options);
     }
 }

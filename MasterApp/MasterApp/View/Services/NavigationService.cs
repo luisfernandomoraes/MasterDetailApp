@@ -22,7 +22,8 @@ namespace MasterApp.View.Services
 
         public Task ShowProperties()
         {
-            App.Current.MainPage.Navigation.PushAsync()
+            //App.Current.MainPage.Navigation.PushAsync()
+            return null;
         }
     }
 }

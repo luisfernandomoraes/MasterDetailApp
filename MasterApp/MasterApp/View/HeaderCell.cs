@@ -14,7 +14,7 @@ namespace MasterApp.View
             this.Height = 25;
             var title = new Label
             {
-                Font = Font.SystemFontOfSize(NamedSize.Small, FontAttributes.Bold),
+                //Font = Font.SystemFontOfSize(NamedSize.Small, FontAttributes.Bold),
                 TextColor = Color.White,
                 VerticalOptions = LayoutOptions.Center
             };
